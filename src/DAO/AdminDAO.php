@@ -12,8 +12,14 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 class AdminDAO extends UserDAO
 {
 
-   protected $tableName = 'user';
-    
+    protected $tableName = 'user';
+   
+    public function __construct(\PDO $db)
+    {
+       parent::__construct($db, 'user');
+       $this->entityClassName = '\Entity\User';
+    }
+   
     public function loadUserByUsername($username)
     {
         // retourne un utilisateur grace a un username

@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 /**
  * Description of UserType
@@ -33,7 +33,8 @@ class UserType extends AbstractType
                 new Assert\Length(['min' => 2, 'max' => 50]),
                 new \Constraints\UniqueEntity([
                     'field' => 'username',
-                    'dao' => $app['users.dao']
+                    'dao' => $app['users.dao'],
+                    'groups' => ['registration'] // Application : le groupe de validation est registration. Ce group est déclaré au moment du formulaire
                 ])
             ],
             'label' => 'Nom d\'utilisateur'
@@ -44,7 +45,8 @@ class UserType extends AbstractType
                  new Assert\Email(),
                  new \Constraints\UniqueEntity([
                     'field' => 'email',
-                    'dao' => $app['users.dao']
+                    'dao' => $app['users.dao'],
+                    'groups' => ['registration']
                  ])
             ],
             'label' => 'Adresse email'
@@ -77,12 +79,9 @@ class UserType extends AbstractType
             'second_options' => [
                 'label' => 'Mot de passe de confirmation'
             ]
-        ])
+        ]) ;
         
-        ->add('submit', SubmitType::class, [
-            'label' => 'Envoyer'
-        ])
-        ;
+
     }
     
     public function configureOptions(OptionsResolver $resolver)
@@ -90,7 +89,8 @@ class UserType extends AbstractType
         // configurer des options pour mon formulaire. par défaut userType associé à une Entity\User
         // $resolver contient plusieurs options mais juste une ici???
         $resolver->setDefaults([
-            'data_class' => \Entity\User::class
+            'data_class' => \Entity\User::class,
+            'validation_groups' => ['edition']
         ]);
     }
    

@@ -8,9 +8,9 @@ use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\FormServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 
-// On utitilise le use quand on a plsuieurs nom d'une même classe pour pas se répéter
+// On utitilise le use quand on a plusieurs nom d'une même classe pour pas se répéter
 
-$app = new Application();
+$app = new \App\CustomApp();
 $app->register(new ServiceControllerServiceProvider());
 $app->register(new AssetServiceProvider());
 $app->register(new TwigServiceProvider());
@@ -50,6 +50,24 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
     'security.firewalls' => [
+        'admin' => array(
+            'pattern' => '^/admin/', // le pattern : toutes les uri qui commencent par admin par ce firewall, toutes les url avec admin protégé. Protege notre backoffice
+            'form' => array(
+                'login_path' => '/loginadmin',
+                'check_path' => '/admin/login_check',
+                'always_use_default_target_path' => true,
+                'default_target_path' => '/admin/dashboard'
+                ),
+            //'http' => true,
+            'anonymous' => false,
+            'logout' => array('logout_path' => '/admin/logoutadmin', 'invalidate_session' => true),
+            'users' => function () use ($app) {
+                return $app['admins.dao'];
+            },
+//            'form_login' =>array(
+//                'default_target_path' => 'admin_dashboard', // fonctionne pas, voir ci-dessus
+//            ),
+        ),
         'front' => array(
             'pattern' => '^/', // pattern = motif : ressemble à une URI : correspond à toutes les routes qui correspond aux firewall. on ne met pas '/admin', 
             //on met juste '/' pour mettre firwaal sur tout le front office. c'est le firewall d'authentification
@@ -61,14 +79,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
                 return $app['users.dao']; // c'est çà qui va joué le role de UserProviders. users.dao : chargez les utilisateurs?
             }
         ),
-        'admin' => array(
-            'pattern' => '^/admin/', // le pattern : toutes les uri qui commencent par admin par ce firewall, toutes les url avec admin protégé. Protege notre backoffice
-            'form' => array('login_path' => '/loginadmin', 'check_path' => '/admin/login_check'),
-            'http' => true,
-            'users' => function () use ($app) {
-                return $app['admins.dao'];
-            }
-        ),
+        
     ]
 ));
 // on créé un firewall : espace protégé : concerne toutes les uri qui comment par /. 

@@ -5,8 +5,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
+
+require __DIR__.'/controllers_admin.php';
+
 
 $app->before(function() use ($app) {
     // une fonction est isolé, accède pas aux variables global. Fonction anonyme peut appelé variable global en utilisant le mot use. 
@@ -54,11 +58,19 @@ $app->get('/login', function(Request $request) use ($app) {
 
 $app->match('/register', function(Request $request) use ($app){
     // match : n'importe qu'elle méthode (get ou post)
+    // match : permet matcher plusieurs méthodes d'un coup, et peut filtrer cette méthode à la fin (ici get et post)
     // $request mis en argument dans la fonction pour pouvoir récup info formulaire???
     $user = new \Entity\User();
     //var_dump($user);
     
-    $form = $app['form.factory']->createBuilder(\FormType\UserType::class, $user)->getForm();
+    $form = $app['form.factory']->createBuilder(\FormType\UserType::class, $user, [
+        'validation_groups' => ['registration'] // par défaut c'est édition, on met registration dans le cas de la modif
+    ])
+        ->add('submit', SubmitType::class, [
+            'label' => 'Envoyer'
+        ])
+        ->getForm();
+    //parametre de create builder : -le type, -l'entité et -un tableau d'options
     
     $form->handleRequest($request);
     //handleRequest : traite, gere et prend en parametre objet $request

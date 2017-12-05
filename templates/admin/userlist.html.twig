@@ -1,0 +1,35 @@
+{% extends 'admin/layout_admin.html.twig' %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    Prénom
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <a href="{{ path('admin_userdelete', { id : user.id }) }}">&Cross;</a>
+                        <a href="{{ path('admin_useredit', { id : user.id }) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
