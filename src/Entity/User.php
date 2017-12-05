@@ -1,96 +1,154 @@
 <?php
 
 namespace Entity;
+
 /**
  * Description of User
  *
  * @author Etudiant
  */
+class User implements \Symfony\Component\Security\Core\User\UserInterface
+{
 
-class User {
-    
     /**
      * Primary Key for User
      * @var integer
      */
     private $id;
-    
+
     /**
      * Username of the user
      * @var string
      */
     private $username;
-    
+
     /**
      * Password of the user
      * @var string
      */
     private $password;
-    
+
     /**
      * Email of the user
      * @var string
      */
     private $email;
-    
+
     /**
      * Firstname of the user
      * @var string
      */
     private $firstname;
-    
+
     /**
      * Lastname of the user
      * @var string
      */
     private $lastname;
-    
-    
-    public function getId() {
+
+    /**
+     * List of the user's roles
+     * @var array
+     */
+    private $role;
+
+    /**
+     * The salt used to encode the user's password
+     * @var string
+     */
+    private $salt;
+
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getFirstname() {
+    public function getFirstname()
+    {
         return $this->firstname;
     }
 
-    public function getLastname() {
+    public function getLastname()
+    {
         return $this->lastname;
     }
-    
-    public function getPassword() {
+
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $password;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function setUsername($username) {
+    public function setUsername($username)
+    {
         $this->username = $username;
     }
 
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
 
-    public function setFirstname($firstname) {
+    public function setFirstname($firstname)
+    {
         $this->firstname = $firstname;
     }
 
-    public function setLastname($lastname) {
+    public function setLastname($lastname)
+    {
         $this->lastname = $lastname;
     }
+
+    public function eraseCredentials()
+    {
+        $this->setPassword(NULL);
+    }
+
+    public function getRole()
+    {
+        // => tableau qui renseigne des CC. On choisit les roles (ROLE_ADMIN, ROLE_USER...) (liste des roles que va avoir mon utilisateur)
+        return $this->role;
+    }
+    
+    public function getRoles()
+    {
+        return explode('|', $this->role);
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
+    public function getSalt()
+    {
+        // salt= grain de sel : rendre le plus complexe un mdp
+
+        return $this->salt;
+    }
+
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    }
+
 }

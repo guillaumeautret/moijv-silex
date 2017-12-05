@@ -25,7 +25,7 @@
         }
         & > a,
         & > a:hover,
-        & > a:focus {
+            & > a:focus {
             background-color: transparent;
             border: 0 !important;
             color: #FFFFFF !important;
@@ -44,7 +44,7 @@
     >li.active{
         & > a,
         & > a:hover,
-        & > a:focus {
+            & > a:focus {
             background-color: rgba(255,255,255, .2);
             transition: background-color .1s .2s;
         }

@@ -15,8 +15,8 @@
         @include transition($fast-transition-time, $transition-linear);
 
         &:hover,
-        &:focus {
-          @include shadow-8dp();
+            &:focus {
+            @include shadow-8dp();
 
         }
     }
@@ -24,8 +24,8 @@
     li {
         position: relative;
         a:hover,
-        a:focus,
-        a:active {
+            a:focus,
+            a:active {
             background-color: $brand-primary;
             color: #FFFFFF;
         }

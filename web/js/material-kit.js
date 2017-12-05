@@ -1,5 +1,5 @@
 /*!
-    
+ 
  =========================================================
  * Material Kit - v1.1.1.0
  =========================================================
@@ -21,7 +21,7 @@ var fixedTop = false;
 
 var navbar_initialized = false;
 
-$(document).ready(function(){
+$(document).ready(function () {
 
     // Init Material scripts for buttons ripples, inputs animations etc, more info on the next link https://github.com/FezVrasta/bootstrap-material-design#materialjs
     $.material.init();
@@ -30,14 +30,14 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
 
     // Activate Datepicker
-    if($('.datepicker').length != 0){
+    if ($('.datepicker').length != 0) {
         $('.datepicker').datepicker({
-             weekStart:1
+            weekStart: 1
         });
     }
 
     // Check if we have the class "navbar-color-on-scroll" then add the function to remove the class "navbar-transparent" so it will transform to a plain color.
-    if($('.navbar-color-on-scroll').length != 0){
+    if ($('.navbar-color-on-scroll').length != 0) {
         $(window).on('scroll', materialKit.checkScrollForTransparentNavbar)
     }
 
@@ -45,32 +45,32 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
 
     // Active Carousel
-	$('.carousel').carousel({
-      interval: 400000
+    $('.carousel').carousel({
+        interval: 400000
     });
 
 });
 
 materialKit = {
-    misc:{
+    misc: {
         navbar_menu_visible: 0
     },
 
-    checkScrollForTransparentNavbar: debounce(function() {
-            if($(document).scrollTop() > 260 ) {
-                if(transparent) {
-                    transparent = false;
-                    $('.navbar-color-on-scroll').removeClass('navbar-transparent');
-                }
-            } else {
-                if( !transparent ) {
-                    transparent = true;
-                    $('.navbar-color-on-scroll').addClass('navbar-transparent');
-                }
+    checkScrollForTransparentNavbar: debounce(function () {
+        if ($(document).scrollTop() > 260) {
+            if (transparent) {
+                transparent = false;
+                $('.navbar-color-on-scroll').removeClass('navbar-transparent');
             }
+        } else {
+            if (!transparent) {
+                transparent = true;
+                $('.navbar-color-on-scroll').addClass('navbar-transparent');
+            }
+        }
     }, 17),
 
-    initSliders: function(){
+    initSliders: function () {
         // Sliders for demo purpose
         $('#sliderRegular').noUiSlider({
             start: 40,
@@ -82,7 +82,7 @@ materialKit = {
         });
 
         $('#sliderDouble').noUiSlider({
-            start: [20, 60] ,
+            start: [20, 60],
             connect: true,
             range: {
                 min: 0,
@@ -96,15 +96,15 @@ materialKit = {
 var big_image;
 
 materialKitDemo = {
-    checkScrollForParallax: debounce(function(){
+    checkScrollForParallax: debounce(function () {
         var current_scroll = $(this).scrollTop();
 
         oVal = ($(window).scrollTop() / 3);
         big_image.css({
-            'transform':'translate3d(0,' + oVal +'px,0)',
-            '-webkit-transform':'translate3d(0,' + oVal +'px,0)',
-            '-ms-transform':'translate3d(0,' + oVal +'px,0)',
-            '-o-transform':'translate3d(0,' + oVal +'px,0)'
+            'transform': 'translate3d(0,' + oVal + 'px,0)',
+            '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
+            '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
+            '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
         });
 
     }, 6)
@@ -116,14 +116,17 @@ materialKitDemo = {
 // leading edge, instead of the trailing.
 
 function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		clearTimeout(timeout);
-		timeout = setTimeout(function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		}, wait);
-		if (immediate && !timeout) func.apply(context, args);
-	};
-};
+    var timeout;
+    return function () {
+        var context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            timeout = null;
+            if (!immediate)
+                func.apply(context, args);
+        }, wait);
+        if (immediate && !timeout)
+            func.apply(context, args);
+    };
+}
+;

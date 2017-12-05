@@ -24,12 +24,12 @@
     border-radius: 4px;
 
     > div {
-      display: none;
+        display: none;
     }
 
     table {
-         width: 100%;
-         margin: 0;
+        width: 100%;
+        margin: 0;
     }
 
     td,
@@ -59,10 +59,10 @@
     }
 
     th{
-         font-weight: $font-weight-bold;
+        font-weight: $font-weight-bold;
 
-         &.switch-datepicker{
-             font-size: $font-size-h6;
+        &.switch-datepicker{
+            font-size: $font-size-h6;
         }
     }
 
@@ -72,11 +72,11 @@
     }
 
     p:hover{
-         background: #eeeeee;
+        background: #eeeeee;
     }
 
     .day.disabled {
-         color: #eeeeee;
+        color: #eeeeee;
     }
 
     td.old,
@@ -94,23 +94,23 @@
 
     td.primary p,
     td.primary:hover p{
-      background-color: $brand-primary;
+        background-color: $brand-primary;
     }
     td.info p,
     td.info:hover p{
-      background-color: $brand-info;
+        background-color: $brand-info;
     }
     td.success p,
     td.success:hover p{
-      background-color: $brand-success;
+        background-color: $brand-success;
     }
     td.warning p,
     td.warning:hover p{
-      background-color: $brand-warning;
+        background-color: $brand-warning;
     }
     td.danger p,
     td.danger:hover p{
-      background-color: $brand-danger;
+        background-color: $brand-danger;
     }
 
     span {
@@ -133,8 +133,8 @@
         &.active{
             &,
             &:focus,
-            &:hover,
-            &:active{
+                &:hover,
+                &:active{
                 background-color: $brand-primary;
                 @include shadow-4dp();
             }
@@ -169,17 +169,17 @@
         background-color: $brand-danger;
     }
     th.switch-datepicker {
-      width: 145px;
+        width: 145px;
     }
     th.next,
     th.prev {
-      font-size: 21px;
+        font-size: 21px;
     }
     thead tr:first-child th {
-      cursor: pointer;
+        cursor: pointer;
     }
     thead tr:first-child th:hover {
-      background: #eeeeee;
+        background: #eeeeee;
     }
 
     &.dropdown-menu{
@@ -208,10 +208,10 @@
 
 .input-append.date .add-on i,
 .input-prepend.date .add-on i {
-  display: block;
-  cursor: pointer;
-  width: 16px;
-  height: 16px;
+    display: block;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
 }
 
 .datepicker-months thead{

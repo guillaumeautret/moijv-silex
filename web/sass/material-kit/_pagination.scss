@@ -16,7 +16,7 @@
         background: transparent;
 
         &:hover,
-        &:focus{
+            &:focus{
             color: $gray-color;
         }
     }
@@ -27,7 +27,7 @@
 
         &,
         &:focus,
-        &:hover{
+            &:hover{
             background-color: $brand-primary;
             border-color: $brand-primary;
             color: $white-color;
@@ -42,7 +42,7 @@
         > .active > span{
             &,
             &:focus,
-            &:hover{
+                &:hover{
                 background-color: $brand-info;
                 border-color: $brand-info;
                 @include shadow-4dp-color($brand-info);
@@ -55,7 +55,7 @@
         > .active > span{
             &,
             &:focus,
-            &:hover{
+                &:hover{
                 background-color: $brand-success;
                 border-color: $brand-success;
                 @include shadow-4dp-color($brand-success);
@@ -68,7 +68,7 @@
         > .active > span{
             &,
             &:focus,
-            &:hover{
+                &:hover{
                 background-color: $brand-warning;
                 border-color: $brand-warning;
                 @include shadow-4dp-color($brand-warning);
@@ -81,7 +81,7 @@
         > .active > span{
             &,
             &:focus,
-            &:hover{
+                &:hover{
                 background-color: $brand-danger;
                 border-color: $brand-danger;
                 @include shadow-4dp-color($brand-danger);

@@ -25,7 +25,7 @@
         &.active > a{
             &,
             &:focus,
-            &:hover{
+                &:hover{
                 background-color: $brand-primary;
                 color: $white-color;
                 @include shadow-big-color($brand-primary);
@@ -39,7 +39,7 @@
             &.active > a{
                 &,
                 &:focus,
-                &:hover{
+                    &:hover{
                     background-color: $brand-info;
                     @include shadow-big-color($brand-info);
                 }
@@ -52,7 +52,7 @@
             &.active > a{
                 &,
                 &:focus,
-                &:hover{
+                    &:hover{
                     background-color: $brand-success;
                     @include shadow-big-color($brand-success);
                 }
@@ -65,7 +65,7 @@
             &.active > a{
                 &,
                 &:focus,
-                &:hover{
+                    &:hover{
                     background-color: $brand-warning;
                     @include shadow-big-color($brand-warning);
                 }
@@ -78,7 +78,7 @@
             &.active > a{
                 &,
                 &:focus,
-                &:hover{
+                    &:hover{
                     background-color: $brand-danger;
                     @include shadow-big-color($brand-danger);
                 }
